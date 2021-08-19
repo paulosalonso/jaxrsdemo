@@ -1,23 +1,33 @@
 package com.github.paulosalonso.jaxrsdemo.controller;
 
 import com.github.paulosalonso.jaxrsdemo.dto.DemoDTO;
+import lombok.extern.slf4j.Slf4j;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
+@Slf4j
 @Path("/jersey")
-@Produces(MediaType.APPLICATION_JSON)
 public class JerseyController {
 
     @GET
+    @Produces(APPLICATION_JSON)
     public Response get() {
         return Response.ok()
                 .entity(DemoDTO.builder()
                         .description("My first Jersey controller")
                         .build())
                 .build();
+    }
+
+    @POST
+    @Consumes(APPLICATION_JSON)
+    public Response post(DemoDTO input) {
+        log.info("{}", input);
+
+        return Response.noContent().build();
     }
 }

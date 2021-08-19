@@ -1,10 +1,13 @@
 package com.github.paulosalonso.jaxrsdemo.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
+@Setter
 @Builder
+@ToString
 public class DemoDTO {
 
     private String description;
